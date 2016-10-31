@@ -10,13 +10,14 @@
 #include <Windows.h>
 #include <bits/stdc++.h>
 using namespace std;
+short int waveIn[44100*20];
 int sampleRate = 44100;         // sampling rate
 HWAVEIN      hWaveIn;
 WAVEHDR      WaveInHdr;
 MMRESULT result;
 WAVEFORMATEX pFormat;
 void PlayRecord(int);
-void init(int n,short int waveIn[]) {
+void init(int n) {
     const int NUMPTS = 44100*n;     // amount of time the audio needs to be recorded
     pFormat.wFormatTag=WAVE_FORMAT_PCM;     // simple, uncompressed format
     pFormat.nChannels=2;                    //  1=mono, 2=stereo
@@ -59,9 +60,8 @@ void PlayRecord(int n) {
 int main() {
     int n;
     cin >> n;
-    int sz = 44100*n;
-    short int waveIn[44100*5];
-    init(n,waveIn);
+    assert(n<20);
+    init(n);
     StartRecord(n);
     return 0;
 }
