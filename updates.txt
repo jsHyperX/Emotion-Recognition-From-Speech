@@ -1,0 +1,2 @@
+- Organised whole project in systematic way
+-Added new option for new mathematical model for training
